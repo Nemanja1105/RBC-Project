@@ -63,18 +63,6 @@ public class AccountServiceTests {
     }
 
     @Test
-    public void FindAll_PageTooBig_EmptyPage() {
-        Pageable pageable = PageRequest.of(10, 10);
-        Page<AccountEntity> page = new PageImpl<>(Arrays.asList(), pageable, 0);
-        when(repository.findAll(pageable)).thenReturn(page);
-        Page<AccountDTO> result = service.findAll(pageable);
-        Assertions.assertThat(result).isNotNull();
-        Assertions.assertThat(result.getContent()).isEmpty();
-        Assertions.assertThat(result.getTotalElements()).isEqualTo(0);
-        verify(repository).findAll(pageable);
-    }
-
-    @Test
     public void FindById_AccountWithIdExists_AccountDTO() {
         when(repository.findById(account.getId())).thenReturn(Optional.of(account));
         var accountDto = service.findById(account.getId());

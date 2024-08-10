@@ -679,3 +679,58 @@ java.lang.IllegalStateException: Could not resolve parameter [1] in public final
 2024-08-10T15:21:37.058+02:00  INFO 15908 --- [MyBudgetBackend] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2024-08-10T15:21:37.064+02:00  INFO 15908 --- [MyBudgetBackend] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
 2024-08-10T15:21:50.549+02:00  WARN 20632 --- [MyBudgetBackend] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-08-10T15:52:04.495+02:00  INFO 21192 --- [MyBudgetBackend] [main] o.u.e.m.MyBudgetBackendApplication       : Starting MyBudgetBackendApplication using Java 17.0.5 with PID 21192 (C:\Users\neman\Desktop\RBC_Projekat\RBC-Project\MyBudgetBackend\target\classes started by nemanja in C:\Users\neman\Desktop\RBC_Projekat\RBC-Project\MyBudgetBackend)
+2024-08-10T15:52:04.497+02:00  INFO 21192 --- [MyBudgetBackend] [main] o.u.e.m.MyBudgetBackendApplication       : The following 1 profile is active: "dev"
+2024-08-10T15:52:04.998+02:00  INFO 21192 --- [MyBudgetBackend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-08-10T15:52:05.050+02:00  INFO 21192 --- [MyBudgetBackend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 45 ms. Found 1 JPA repository interface.
+2024-08-10T15:52:05.422+02:00  INFO 21192 --- [MyBudgetBackend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9000 (http)
+2024-08-10T15:52:05.429+02:00  INFO 21192 --- [MyBudgetBackend] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-08-10T15:52:05.429+02:00  INFO 21192 --- [MyBudgetBackend] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-08-10T15:52:05.467+02:00  INFO 21192 --- [MyBudgetBackend] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-08-10T15:52:05.468+02:00  INFO 21192 --- [MyBudgetBackend] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 938 ms
+2024-08-10T15:52:05.565+02:00  INFO 21192 --- [MyBudgetBackend] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-08-10T15:52:05.607+02:00  INFO 21192 --- [MyBudgetBackend] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-08-10T15:52:05.631+02:00  INFO 21192 --- [MyBudgetBackend] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-08-10T15:52:05.857+02:00  INFO 21192 --- [MyBudgetBackend] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-08-10T15:52:05.879+02:00  INFO 21192 --- [MyBudgetBackend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-08-10T15:52:06.085+02:00  INFO 21192 --- [MyBudgetBackend] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@38ef1a0a
+2024-08-10T15:52:06.087+02:00  INFO 21192 --- [MyBudgetBackend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-08-10T15:52:06.787+02:00  INFO 21192 --- [MyBudgetBackend] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-08-10T15:52:06.818+02:00  INFO 21192 --- [MyBudgetBackend] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-08-10T15:52:07.086+02:00  WARN 21192 --- [MyBudgetBackend] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-08-10T15:52:07.346+02:00  INFO 21192 --- [MyBudgetBackend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 9000 (http) with context path '/'
+2024-08-10T15:52:07.354+02:00  INFO 21192 --- [MyBudgetBackend] [main] o.u.e.m.MyBudgetBackendApplication       : Started MyBudgetBackendApplication in 3.169 seconds (process running for 3.549)
+2024-08-10T15:52:09.252+02:00  INFO 21192 --- [MyBudgetBackend] [http-nio-9000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-08-10T15:52:09.253+02:00  INFO 21192 --- [MyBudgetBackend] [http-nio-9000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-08-10T15:52:09.253+02:00  INFO 21192 --- [MyBudgetBackend] [http-nio-9000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2024-08-10T15:52:09.447+02:00  WARN 21192 --- [MyBudgetBackend] [http-nio-9000-exec-1] PageModule$PlainPageSerializationWarning : Serializing PageImpl instances as-is is not supported, meaning that there is no guarantee about the stability of the resulting JSON structure!
+	For a stable JSON structure, please use Spring Data's PagedModel (globally via @EnableSpringDataWebSupport(pageSerializationMode = VIA_DTO))
+	or Spring HATEOAS and Spring Data's PagedResourcesAssembler as documented in https://docs.spring.io/spring-data/commons/reference/repositories/core-extensions.html#core.web.pageables.
+
+2024-08-10T15:52:23.446+02:00  INFO 21192 --- [MyBudgetBackend] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-08-10T15:52:23.446+02:00  INFO 21192 --- [MyBudgetBackend] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-08-10T15:52:23.446+02:00  INFO 21192 --- [MyBudgetBackend] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-08-10T15:56:59.371+02:00  INFO 20672 --- [MyBudgetBackend] [main] o.u.e.m.MyBudgetBackendApplication       : Starting MyBudgetBackendApplication using Java 17.0.5 with PID 20672 (C:\Users\neman\Desktop\RBC_Projekat\RBC-Project\MyBudgetBackend\target\classes started by nemanja in C:\Users\neman\Desktop\RBC_Projekat\RBC-Project\MyBudgetBackend)
+2024-08-10T15:56:59.373+02:00  INFO 20672 --- [MyBudgetBackend] [main] o.u.e.m.MyBudgetBackendApplication       : The following 1 profile is active: "dev"
+2024-08-10T15:56:59.791+02:00  INFO 20672 --- [MyBudgetBackend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-08-10T15:56:59.831+02:00  INFO 20672 --- [MyBudgetBackend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 34 ms. Found 1 JPA repository interface.
+2024-08-10T15:57:00.150+02:00  INFO 20672 --- [MyBudgetBackend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9000 (http)
+2024-08-10T15:57:00.157+02:00  INFO 20672 --- [MyBudgetBackend] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-08-10T15:57:00.157+02:00  INFO 20672 --- [MyBudgetBackend] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-08-10T15:57:00.193+02:00  INFO 20672 --- [MyBudgetBackend] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-08-10T15:57:00.194+02:00  INFO 20672 --- [MyBudgetBackend] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 792 ms
+2024-08-10T15:57:00.286+02:00  INFO 20672 --- [MyBudgetBackend] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-08-10T15:57:00.324+02:00  INFO 20672 --- [MyBudgetBackend] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-08-10T15:57:00.347+02:00  INFO 20672 --- [MyBudgetBackend] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-08-10T15:57:00.577+02:00  INFO 20672 --- [MyBudgetBackend] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-08-10T15:57:00.601+02:00  INFO 20672 --- [MyBudgetBackend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-08-10T15:57:00.801+02:00  INFO 20672 --- [MyBudgetBackend] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@56f9de3b
+2024-08-10T15:57:00.802+02:00  INFO 20672 --- [MyBudgetBackend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-08-10T15:57:01.445+02:00  INFO 20672 --- [MyBudgetBackend] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-08-10T15:57:01.478+02:00  INFO 20672 --- [MyBudgetBackend] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-08-10T15:57:01.733+02:00  WARN 20672 --- [MyBudgetBackend] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-08-10T15:57:01.964+02:00  INFO 20672 --- [MyBudgetBackend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 9000 (http) with context path '/'
+2024-08-10T15:57:01.971+02:00  INFO 20672 --- [MyBudgetBackend] [main] o.u.e.m.MyBudgetBackendApplication       : Started MyBudgetBackendApplication in 2.913 seconds (process running for 3.303)
+2024-08-10T15:57:02.076+02:00  INFO 20672 --- [MyBudgetBackend] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-08-10T15:57:02.077+02:00  INFO 20672 --- [MyBudgetBackend] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-08-10T15:57:02.083+02:00  INFO 20672 --- [MyBudgetBackend] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

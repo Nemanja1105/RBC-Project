@@ -18,6 +18,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Builder
 @Table(name = "account")
 @SoftDelete
 public class AccountEntity {

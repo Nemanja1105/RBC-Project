@@ -14,7 +14,7 @@ import org.unibl.etf.mybudgetbackend.services.AccountService;
  * Provides endpoints for creating, reading, updating, and deleting account records.
  */
 @RestController
-@RequestMapping("/accounts")
+@RequestMapping("/api/v1/accounts")
 public class AccountController {
     private final AccountService service;
 

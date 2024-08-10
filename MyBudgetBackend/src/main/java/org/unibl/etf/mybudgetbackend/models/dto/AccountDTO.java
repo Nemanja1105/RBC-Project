@@ -7,6 +7,10 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
+/**
+ * Data Transfer Object representing an account.
+ * This class is used to transfer account data between service and controller layer
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

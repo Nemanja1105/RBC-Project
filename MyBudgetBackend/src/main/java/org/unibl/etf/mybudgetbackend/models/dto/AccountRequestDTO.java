@@ -10,6 +10,9 @@ import org.hibernate.validator.constraints.Length;
 
 import java.math.BigDecimal;
 
+/**
+ * This class is used to validate and encapsulate the data required for creating or updating an account.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

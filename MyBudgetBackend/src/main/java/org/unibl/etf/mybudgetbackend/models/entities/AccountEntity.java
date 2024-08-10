@@ -6,6 +6,11 @@ import org.hibernate.annotations.SoftDelete;
 
 import java.math.BigDecimal;
 
+
+/**
+ * Represents an account entity in the database.
+ * Has support for soft deletion.
+ */
 @Getter
 @Setter
 @ToString

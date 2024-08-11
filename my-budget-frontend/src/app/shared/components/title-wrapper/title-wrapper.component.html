@@ -1,0 +1,12 @@
+<div>
+  <div class="flex justify-content-between">
+    <div class="">
+      <h2 class="text-3xl font-semibold m-0">{{ title }}</h2>
+      <p class="text-500 m-0">
+        {{ description }}
+      </p>
+    </div>
+    <ng-content select="[end]"></ng-content>
+  </div>
+  <p-divider></p-divider>
+</div>

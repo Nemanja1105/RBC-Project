@@ -16,9 +16,9 @@
     @for (item of routes; track $index) {
     <a
       pRipple
-      class="flex align-items-center p-menuitem-link no-underline text-100"
+      class="flex align-items-center p-menuitem-link no-underline text-100 route-link"
       [routerLink]="item.path"
-      routerLinkActive="active_route"
+      routerLinkActive="active-route"
     >
       <span [class]="item.icon"></span>
       <span class="ml-2">{{ item.title }}</span>

@@ -1,0 +1,23 @@
+<app-title-wrapper
+  title="Accounts"
+  description="Manage all accounts in the system."
+>
+  <p-button label="Add" icon="pi pi-plus" end size="small" />
+</app-title-wrapper>
+
+<div class="mx-2 md:mx-6 mt-2">
+  <p-dataView #dv [value]="accounts">
+    <ng-template pTemplate="list" let-accounts>
+      <app-account-data-view-items
+        [accounts]="accounts"
+        [numOfRows]="5"
+        [isLoading]="isLoading"
+      ></app-account-data-view-items>
+    </ng-template>
+    <ng-template pTemplate="empty">
+      @if(!isLoading){
+      <p class="p-0 fond-medium text-xl text-center">No results found</p>
+      }
+    </ng-template>
+  </p-dataView>
+</div>

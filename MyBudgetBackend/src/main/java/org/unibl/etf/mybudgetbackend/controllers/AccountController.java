@@ -9,12 +9,15 @@ import org.unibl.etf.mybudgetbackend.models.dto.AccountDTO;
 import org.unibl.etf.mybudgetbackend.models.dto.AccountRequestDTO;
 import org.unibl.etf.mybudgetbackend.services.AccountService;
 
+import java.util.List;
+
 /**
  * REST controller for managing account-related operations.
  * Provides endpoints for creating, reading, updating, and deleting account records.
  */
 @RestController
 @RequestMapping("/api/v1/accounts")
+@CrossOrigin("http://localhost:4200")
 public class AccountController {
     private final AccountService service;
 
@@ -22,15 +25,16 @@ public class AccountController {
         this.service = service;
     }
 
+
+
     /**
-     * Retrieves the accounts page
+     * Retrieves the accounts in the system
      *
-     * @param page the Pageable object that contains pagination information
-     * @return a  Page of  AccountDTO objects
+     * @return a  List of  AccountDTO objects
      */
     @GetMapping
-    public Page<AccountDTO> findAll(Pageable page) {
-        return this.service.findAll(page);
+    public List<AccountDTO> findAll(){
+        return this.service.findAll();
     }
 
     /**

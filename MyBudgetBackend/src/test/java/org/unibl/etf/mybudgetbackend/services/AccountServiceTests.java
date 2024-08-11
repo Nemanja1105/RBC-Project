@@ -6,11 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
-import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
@@ -24,6 +22,7 @@ import org.unibl.etf.mybudgetbackend.services.impl.AccountServiceImpl;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.Mockito.*;
@@ -50,12 +49,22 @@ public class AccountServiceTests {
     }
 
     //METHOD-NAME_STATE_EXPECTATION
+
+    @Test
+    public void FindAll_ValidRequest_ListOfAccoutDTO(){
+        when(repository.findAll()).thenReturn(Arrays.asList(account));
+        List<AccountDTO> result=service.findAll();
+        Assertions.assertThat(result).isNotNull();
+        Assertions.assertThat(result.size()).isEqualTo(1);
+        verify(repository).findAll();
+    }
+
     @Test
     public void FindAll_ValidPage_PageWithContent() {
         Pageable pageable = PageRequest.of(0, 1);
         Page<AccountEntity> page = new PageImpl<>(Arrays.asList(account), pageable, 1);
         when(repository.findAll(pageable)).thenReturn(page);
-        Page<AccountDTO> result = service.findAll(pageable);
+        Page<AccountDTO> result = service.findAllWithPage(pageable);
         Assertions.assertThat(result).isNotNull();
         Assertions.assertThat(result.getContent()).isNotNull();
         Assertions.assertThat(result.getTotalElements()).isEqualTo(1);

@@ -54,16 +54,13 @@ public class AccountControllerTests {
     }
 
     @Test
-    public void FindAll_ValidPageable_20OKWithContent() throws Exception {
-        Pageable pageable = PageRequest.of(0, 1);
-        Page<AccountDTO> page = new PageImpl<>(Arrays.asList(account), pageable, 1);
-        when(service.findAll(any(Pageable.class))).thenReturn(page);
-        mockMvc.perform(get("/api/v1/accounts?page=0&size=1").contentType(MediaType.APPLICATION_JSON))
+    public void FindAll_ValidRequest_20OKWithContent() throws Exception {
+        when(service.findAll()).thenReturn(Arrays.asList(account));
+        mockMvc.perform(get("/api/v1/accounts").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.content").isArray())
-                .andExpect(jsonPath("$.content.length()").value(1))
-                .andExpect(jsonPath("$.totalPages").value(1));
-        verify(service).findAll(pageable);
+                .andExpect(jsonPath("$").isArray())
+                .andExpect(jsonPath("$.length()").value(1));
+        verify(service).findAll();
     }
 
     @Test

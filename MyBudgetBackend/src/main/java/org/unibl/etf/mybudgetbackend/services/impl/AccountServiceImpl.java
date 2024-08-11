@@ -13,6 +13,8 @@ import org.unibl.etf.mybudgetbackend.models.entities.AccountEntity;
 import org.unibl.etf.mybudgetbackend.repositories.AccountRepository;
 import org.unibl.etf.mybudgetbackend.services.AccountService;
 
+import java.util.List;
+
 /**
  * Implementation of the AccountService interface.
  * This class provides the business logic for handling account-related operations.
@@ -33,13 +35,23 @@ public class AccountServiceImpl implements AccountService {
     }
 
     /**
+     * Finds all accounts in system.
+     *
+     * @return a  List of  AccountDTO objects
+     */
+    @Override
+    public List<AccountDTO> findAll() {
+        return this.repository.findAll().stream().map(el -> mapper.map(el, AccountDTO.class)).toList();
+    }
+
+    /**
      * Finds all accounts with pagination.
      *
      * @param page the Pageable object that contains pagination information
      * @return a  Page of  AccountDTO objects
      */
     @Override
-    public Page<AccountDTO> findAll(Pageable page) {
+    public Page<AccountDTO> findAllWithPage(Pageable page) {
         return this.repository.findAll(page).map(el -> this.mapper.map(el, AccountDTO.class));
     }
 

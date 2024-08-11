@@ -1,0 +1,21 @@
+<div>
+  <p-button
+    icon="pi pi-align-justify"
+    styleClass="text-50 p-1"
+    size="large"
+    [text]="true"
+    (onClick)="menu.toggle($event)"
+  />
+  <p-menu #menu [model]="items" [popup]="true">
+    <ng-template pTemplate="item" let-item>
+      <a
+        [routerLink]="item.route"
+        class="p-menuitem-link"
+        routerLinkActive="text-primary"
+      >
+        <span [class]="item.icon"></span>
+        <span class="ml-2">{{ item.label }}</span>
+      </a>
+    </ng-template>
+  </p-menu>
+</div>

@@ -1,0 +1,31 @@
+<p-toolbar styleClass="bg-primary border-none border-noround xl:px-8 px-3">
+  <div class="p-toolbar-group-start">
+    <a
+      routerLink="/accounts"
+      class="p-0 m-0 text-2xl font-semibold text-100 no-underline flex align-items-center gap-2"
+    >
+      <span
+        class="pi pi-building-columns text-2xl font-semibold text-100"
+      ></span>
+      My Budget
+    </a>
+  </div>
+  <nav
+    class="hidden md:flex p-toolbar-group-center align-items-center text-xl font-medium gap-4"
+  >
+    @for (item of routes; track $index) {
+    <a
+      pRipple
+      class="flex align-items-center p-menuitem-link no-underline text-100"
+      [routerLink]="item.path"
+      routerLinkActive="active_route"
+    >
+      <span [class]="item.icon"></span>
+      <span class="ml-2">{{ item.title }}</span>
+    </a>
+    }
+  </nav>
+  <div class="p-toolbar-group-end">
+    <app-mobile-navbar class="md:hidden"></app-mobile-navbar>
+  </div>
+</p-toolbar>

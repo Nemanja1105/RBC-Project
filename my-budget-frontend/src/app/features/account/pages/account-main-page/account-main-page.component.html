@@ -2,7 +2,13 @@
   title="Accounts"
   description="Manage all accounts in the system."
 >
-  <p-button label="Add" icon="pi pi-plus" end size="small" />
+  <p-button
+    label="Add"
+    icon="pi pi-plus"
+    end
+    size="small"
+    (click)="openDialog()"
+  />
 </app-title-wrapper>
 
 <div class="mx-2 md:mx-6 mt-2">
@@ -20,5 +26,9 @@
       }
     </ng-template>
   </p-dataView>
-  <app-add-account-dialog></app-add-account-dialog>
+  <app-add-account-dialog
+    [visible]="visibilityOfAddDialog"
+    (onClose)="onDialogClose()"
+    (afterSubmit)="onSubmit($event)"
+  ></app-add-account-dialog>
 </div>

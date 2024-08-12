@@ -6,7 +6,7 @@ import { AccountDTO } from '../../../../models/account-dto';
 import { NgClass, UpperCasePipe } from '@angular/common';
 import { AccountDataViewItemsComponent } from '../../components/account-data-view-items/account-data-view-items.component';
 import { AccountService } from '../../services/account.service';
-import { AddAccountDialogComponent } from "../../components/add-account-dialog/add-account-dialog.component";
+import { AddAccountDialogComponent } from '../../components/add-account-dialog/add-account-dialog.component';
 
 @Component({
   selector: 'app-account-main-page',
@@ -18,14 +18,15 @@ import { AddAccountDialogComponent } from "../../components/add-account-dialog/a
     NgClass,
     UpperCasePipe,
     AccountDataViewItemsComponent,
-    AddAccountDialogComponent
-],
+    AddAccountDialogComponent,
+  ],
   templateUrl: './account-main-page.component.html',
   styleUrl: './account-main-page.component.scss',
 })
 export class AccountMainPageComponent implements OnInit {
   accountService = inject(AccountService);
   isLoading: boolean = false;
+  visibilityOfAddDialog: boolean = false;
   accounts: AccountDTO[] = [];
 
   ngOnInit(): void {
@@ -44,5 +45,17 @@ export class AccountMainPageComponent implements OnInit {
         this.isLoading = false;
       },
     });
+  }
+
+  openDialog() {
+    this.visibilityOfAddDialog = true;
+  }
+
+  onDialogClose() {
+    this.visibilityOfAddDialog = false;
+  }
+
+  onSubmit(account: AccountDTO | null) {
+    if (account) this.accounts = [...this.accounts, account];
   }
 }

@@ -6,6 +6,7 @@ import { AccountDTO } from '../../../../models/account-dto';
 import { NgClass, UpperCasePipe } from '@angular/common';
 import { AccountDataViewItemsComponent } from '../../components/account-data-view-items/account-data-view-items.component';
 import { AccountService } from '../../services/account.service';
+import { AddAccountDialogComponent } from "../../components/add-account-dialog/add-account-dialog.component";
 
 @Component({
   selector: 'app-account-main-page',
@@ -17,7 +18,8 @@ import { AccountService } from '../../services/account.service';
     NgClass,
     UpperCasePipe,
     AccountDataViewItemsComponent,
-  ],
+    AddAccountDialogComponent
+],
   templateUrl: './account-main-page.component.html',
   styleUrl: './account-main-page.component.scss',
 })

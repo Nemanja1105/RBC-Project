@@ -99,7 +99,7 @@ public class AccountServiceTests {
 
     @Test
     public void Update_AccountWithIdExists_AccountDTO() {
-        var updatedAccount = new AccountEntity(account.getId(), "TEST", account.getBalance(), account.getCurrency());
+        var updatedAccount = new AccountEntity(account.getId(), "TEST", account.getBalance(), account.getCurrency(),null);
         when(repository.existsById(any(Long.class))).thenReturn(true);
         when(repository.saveAndFlush(any(AccountEntity.class))).thenReturn(updatedAccount);
         var request = new AccountRequestDTO("TEST", account.getBalance(), account.getCurrency());
@@ -134,6 +134,23 @@ public class AccountServiceTests {
         verify(repository, times(0)).deleteById(id);
     }
 
+    @Test
+    public void ExistsById_AccountWithIdExists_ReturnTrue(){
+        Long id = 1l;
+        when(repository.existsById(any(Long.class))).thenReturn(true);
+        var result=service.existsById(id);
+        Assertions.assertThat(result).isTrue();
+        verify(repository).existsById(any(Long.class));
+    }
+
+    @Test
+    public void ExistsById_AccountWithIdNotExists_ReturnFalse(){
+        Long id = 1l;
+        when(repository.existsById(any(Long.class))).thenReturn(false);
+        var result=service.existsById(id);
+        Assertions.assertThat(result).isFalse();
+        verify(repository).existsById(any(Long.class));
+    }
 
     private ModelMapper modelMapper() {
         ModelMapper mapper = new ModelMapper();

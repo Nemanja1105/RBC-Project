@@ -5,6 +5,7 @@ import lombok.*;
 import org.hibernate.annotations.SoftDelete;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 
 /**
@@ -35,4 +36,6 @@ public class AccountEntity {
     @Basic
     @Column(name = "currency", nullable = false,length = 15)
     private String currency;
+    @OneToMany(mappedBy = "account", cascade = CascadeType.REMOVE)
+    private List<TransactionEntity> transactions;
 }

@@ -18,4 +18,5 @@ public interface AccountService {
     AccountDTO insert(AccountRequestDTO request);
     AccountDTO update(Long id, AccountRequestDTO request);
     void delete(Long id);
+    boolean existsById(Long id);
 }

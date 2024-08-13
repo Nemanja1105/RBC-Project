@@ -1,13 +1,14 @@
 package org.unibl.etf.mybudgetbackend.controllers;
 
 import jakarta.validation.Valid;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.unibl.etf.mybudgetbackend.models.dto.AccountDTO;
 import org.unibl.etf.mybudgetbackend.models.dto.AccountRequestDTO;
+import org.unibl.etf.mybudgetbackend.models.dto.TransactionDTO;
+import org.unibl.etf.mybudgetbackend.models.dto.TransactionRequestDTO;
 import org.unibl.etf.mybudgetbackend.services.AccountService;
+import org.unibl.etf.mybudgetbackend.services.TransactionService;
 
 import java.util.List;
 
@@ -20,11 +21,12 @@ import java.util.List;
 @CrossOrigin("http://localhost:4200")
 public class AccountController {
     private final AccountService service;
+    private final TransactionService transactionService;
 
-    public AccountController(AccountService service) {
+    public AccountController(AccountService service, TransactionService transactionService) {
         this.service = service;
+        this.transactionService = transactionService;
     }
-
 
 
     /**
@@ -33,7 +35,7 @@ public class AccountController {
      * @return a  List of  AccountDTO objects
      */
     @GetMapping
-    public List<AccountDTO> findAll(){
+    public List<AccountDTO> findAll() {
         return this.service.findAll();
     }
 
@@ -86,5 +88,30 @@ public class AccountController {
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         this.service.delete(id);
+    }
+
+    /**
+     * Retrieves a list of all transactions associated with a specified account.
+     * If the requested account does not exist, an exception is thrown that is handled by the global exception handler
+     *
+     * @param id the ID of the account for which transactions are being retrieved
+     * @return a  List of TransactionDTO objects representing all transactions associated with the specified account
+     */
+    @GetMapping("/{id}/transactions")
+    public List<TransactionDTO> getAllTransactionsByAccountId(@PathVariable Long id) {
+        return this.transactionService.findAllByAccountId(id);
+    }
+
+    /**
+     * Creates a new transaction for the specified account.
+     *
+     * @param id      the ID of the account for which the transaction is being created
+     * @param request a  TransactionRequestDTO object containing the details of the transaction to be created
+     * @return a  TransactionDTO representing the newly created transaction
+     */
+    @PostMapping("/{id}/transactions")
+    @ResponseStatus(HttpStatus.CREATED)
+    public TransactionDTO insertTransaction(@PathVariable Long id, @RequestBody @Valid TransactionRequestDTO request) {
+        return this.transactionService.insert(id, request);
     }
 }

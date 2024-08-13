@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
  */
 public class NotFoundException extends HttpException {
     public NotFoundException() {
-        super(HttpStatus.NOT_FOUND);
+        super(HttpStatus.NOT_FOUND,"Resource not found.");
     }
 
     public NotFoundException(Object data) {

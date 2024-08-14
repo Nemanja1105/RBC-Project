@@ -24,7 +24,7 @@ import { CurrencyService } from '../../../../shared/services/currency.service';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { JsonPipe, NgClass, UpperCasePipe } from '@angular/common';
 import { AccountService } from '../../services/account.service';
-import { AccountDTO, AccountRequestDTO } from '../../../../models/account-dto';
+import { AccountDTO, AccountRequestDTO } from '../../../../models/account';
 
 @Component({
   selector: 'app-add-account-dialog',
@@ -96,12 +96,10 @@ export class AddAccountDialogComponent implements OnInit {
       next: (account) => {
         this.addLoading = false;
         this.afterSubmit.emit(account);
-        this.formData.reset();
         this.handleOnHide();
       },
       error: () => {
         this.addLoading = false;
-        this.formData.reset();
         this.handleOnHide();
       },
     });
@@ -122,6 +120,7 @@ export class AddAccountDialogComponent implements OnInit {
   }
 
   handleOnHide() {
+    this.formData.reset();
     this.onClose.emit();
   }
 }

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { AccountDTO } from '../../../../models/account-dto';
+import { AccountDTO } from '../../../../models/account';
 import { DecimalPipe, NgClass, UpperCasePipe } from '@angular/common';
 import { SkeletonModule } from 'primeng/skeleton';
 

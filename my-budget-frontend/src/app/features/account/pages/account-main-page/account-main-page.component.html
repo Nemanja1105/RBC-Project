@@ -32,3 +32,7 @@
     (afterSubmit)="onSubmit($event)"
   ></app-add-account-dialog>
 </div>
+<app-transaction-footer
+  [accounts]="accounts"
+  (onTransactionSubmit)="onTransactionSubmit($event)"
+></app-transaction-footer>

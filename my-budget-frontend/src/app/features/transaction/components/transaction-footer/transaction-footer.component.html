@@ -1,0 +1,24 @@
+<div class="custom-footer container">
+  <div class="border-top-2 surface-border">
+    <div
+      class="flex sm:justify-content-between flex-column sm:flex-row align-items-center mx-2 md:mx-6 py-3 px-2"
+    >
+      <p-button
+        label="New transaction"
+        class="flex-order-1 sm:flex-order-0 mt-2 sm:mt-0"
+        (click)="openDialog()"
+        size="small"
+        icon="pi pi-plus"
+      ></p-button>
+      <span class="font-semibold text-xl flex-order-0 sm:flex-order-1"
+        >Available: 100 EUR</span
+      >
+    </div>
+  </div>
+</div>
+<app-add-transaction-dialog
+  [visible]="visibilityOfAddDialog"
+  (onClose)="onDialogClose()"
+  [accounts]="accounts"
+  (afterSubmit)="onSubmit($event)"
+></app-add-transaction-dialog>

@@ -13,7 +13,7 @@ export const routes: Routes = [
     path: 'transactions',
     loadComponent: () =>
       import(
-        './features/transaction/transaction-main-page/transaction-main-page.component'
+        './features/transaction/pages/transaction-main-page/transaction-main-page.component'
       ).then((r) => r.TransactionMainPageComponent),
   },
   {

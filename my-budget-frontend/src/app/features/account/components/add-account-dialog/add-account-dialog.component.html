@@ -4,7 +4,8 @@
   [(visible)]="visible"
   (onHide)="handleOnHide()"
   [draggable]="false"
-  [style]="{ width: '30rem' }"
+  [breakpoints]="{ '1399px': '35vw', '1199px': '60vw', '575px': '90vw' }"
+  [style]="{ width: '28vw' }"
 >
   <form class="flex flex-column gap-3 mt-1" [formGroup]="formData">
     <div class="flex flex-column gap-2">
@@ -76,6 +77,7 @@
       label="Cancel"
       severity="secondary"
       size="small"
+      [text]="true"
       (click)="handleOnHide()"
     />
     <p-button

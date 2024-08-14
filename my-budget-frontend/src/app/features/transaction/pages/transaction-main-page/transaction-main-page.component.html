@@ -1,0 +1,33 @@
+<app-title-wrapper
+  title="Transactions"
+  description="Manage all transactions in the system."
+>
+  <p-dropdown
+    end
+    [options]="accountDropdownOptions"
+    placeholder="Select account"
+    [loading]="isAccountsLoading"
+    [formControl]="formData"
+    styleClass="w-12rem"
+  />
+</app-title-wrapper>
+<div class="mx-2 md:mx-6 mt-2 relative h-full">
+  <p-dataView #dv [value]="transactions">
+    <ng-template pTemplate="list" let-transactions>
+      <app-transactions-data-view-items
+        [transactions]="transactions"
+        [isLoading]="isLoading"
+        [numOfRows]="5"
+      ></app-transactions-data-view-items>
+    </ng-template>
+    <ng-template pTemplate="empty">
+      @if(!isLoading){
+      <p class="p-0 fond-medium text-xl text-center">No results found</p>
+      }
+    </ng-template>
+  </p-dataView>
+</div>
+<app-transaction-footer
+  [accounts]="accounts"
+  (onTransactionSubmit)="onSubmit($event)"
+></app-transaction-footer>

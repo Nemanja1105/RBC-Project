@@ -1,0 +1,178 @@
+<p-dialog
+  header="New transaction"
+  [modal]="true"
+  [(visible)]="visible"
+  (onHide)="handleOnHide()"
+  [draggable]="false"
+  [breakpoints]="{ '1399px': '35vw', '1199px': '60vw', '575px': '90vw' }"
+  [style]="{ width: '30vw' }"
+>
+  <!-- <form class="flex flex-column gap-3 mt-1" [formGroup]="formData">
+    <div class="flex flex-column gap-2">
+      <label for="name" class="font-medium">Name</label>
+      <input
+        pInputText
+        formControlName="name"
+        id="name"
+        placeholder="Enter name"
+        [ngClass]="{
+          'ng-invalid ng-dirty': isFieldInvalid('name')
+        }"
+      />
+      @if (doesFieldHaveError('name','required')){
+      <small class="text-red-500 font-medium">Name is required</small>
+      } @else if(doesFieldHaveError('name','maxlength')){
+      <small class="text-red-500 font-medium"
+        >Maximum number of characters is 255</small
+      >
+      }
+    </div>
+    <div class="flex flex-column gap-2">
+      <label for="currency" class="font-medium">Currency</label>
+      <p-dropdown
+        [options]="currencies"
+        optionLabel="name"
+        placeholder="Select a Currency"
+        styleClass="w-full"
+        scrollHeight="150px"
+        formControlName="currency"
+        [loading]="currencyLoading"
+        [ngClass]="{
+          'ng-invalid ng-dirty': isFieldInvalid('currency')
+        }"
+      />
+      @if (doesFieldHaveError('currency','required')){
+      <small class="text-red-500 font-medium">Currency is required</small>
+      }
+    </div>
+    <div class="flex flex-column gap-2">
+      <label for="balance" class="font-medium">Balance</label>
+      <p-inputGroup>
+        <input
+          pInputText
+          formControlName="balance"
+          id="balance"
+          type="number"
+          min="0"
+          placeholder="Enter account balance"
+          [ngClass]="{
+            'ng-invalid ng-dirty': isFieldInvalid('balance')
+          }"
+        />
+        <p-inputGroupAddon>
+          <span>{{ formData.value.currency?.code | uppercase }}</span>
+        </p-inputGroupAddon>
+      </p-inputGroup>
+      @if (doesFieldHaveError('balance','required')){
+      <small class="text-red-500 font-medium">Balance is required</small>
+      } @else if(doesFieldHaveError('balance','min')){
+      <small class="text-red-500 font-medium"
+        >Balanace must be greater than zero</small
+      >
+      }
+    </div>
+  </form> -->
+  <form class="flex flex-column gap-3 mt-1" [formGroup]="formData">
+    <div class="flex flex-column gap-2">
+      <label for="description" class="font-medium">Description</label>
+      <input
+        pInputText
+        formControlName="description"
+        id="description"
+        placeholder="Enter description"
+        [ngClass]="{
+          'ng-invalid ng-dirty': isFieldInvalid('description')
+        }"
+      />
+      @if (doesFieldHaveError('description','required')){
+      <small class="text-red-500 font-medium">Description is required</small>
+      } @else if(doesFieldHaveError('Description','maxlength')){
+      <small class="text-red-500 font-medium"
+        >Maximum number of characters is 255</small
+      >
+      }
+    </div>
+
+    <div class="flex gap-2 w-full">
+      <div class="flex flex-column gap-2 w-6">
+        <label for="account" class="font-medium">Account</label>
+        <p-dropdown
+          id="account"
+          [options]="accounts"
+          optionLabel="name"
+          scrollHeight="150px"
+          placeholder="Select an account"
+          styleClass="w-full"
+          formControlName="account"
+          [ngClass]="{
+            'ng-invalid ng-dirty': isFieldInvalid('account')
+          }"
+        />
+        @if (doesFieldHaveError('account','required')){
+        <small class="text-red-500 font-medium">Account is required</small>
+        }
+      </div>
+      <div class="flex flex-column gap-2 w-6">
+        <label for="type" class="font-medium">Type</label>
+        <p-dropdown
+          id="type"
+          [options]="transactionTypes"
+          placeholder="Select a type"
+          styleClass="w-full"
+          formControlName="type"
+          [ngClass]="{
+            'ng-invalid ng-dirty': isFieldInvalid('type')
+          }"
+        />
+        @if (doesFieldHaveError('type','required')){
+        <small class="text-red-500 font-medium">Type is required</small>
+        }
+      </div>
+    </div>
+    <div class="flex flex-column gap-2 w-6">
+      <label for="amount" class="font-medium">Amount</label>
+      <p-inputGroup>
+        <input
+          pInputText
+          formControlName="amount"
+          id="amount"
+          type="number"
+          placeholder="Enter amount"
+          [ngClass]="{
+            'ng-invalid ng-dirty': isFieldInvalid('amount')
+          }"
+        />
+        <p-inputGroupAddon>
+          <span>{{ formData.value.account?.currency | uppercase }}</span>
+        </p-inputGroupAddon>
+      </p-inputGroup>
+      @if (doesFieldHaveError('amount','required')){
+      <small class="text-red-500 font-medium">Amount is required</small>
+      } @else if(doesFieldHaveError('amount','positiveNumber')){
+      <small class="text-red-500 font-medium"
+        >Amount must be greater than zero</small
+      >
+      } @else if(doesFieldHaveError('amount','insufficientFunds')){
+      <small class="text-red-500 font-medium"
+        >Insufficient funds on the selected account</small
+      >
+      }
+    </div>
+  </form>
+  <div class="flex justify-content-end gap-2 mt-5">
+    <p-button
+      label="Cancel"
+      severity="secondary"
+      size="small"
+      [text]="true"
+      (click)="handleOnHide()"
+    />
+    <p-button
+      label="Save"
+      size="small"
+      [loading]="addLoading"
+      [disabled]="formData.invalid"
+      (onClick)="addTransaction()"
+    />
+  </div>
+</p-dialog>

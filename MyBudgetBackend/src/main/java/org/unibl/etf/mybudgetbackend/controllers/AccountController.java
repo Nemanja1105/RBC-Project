@@ -114,4 +114,12 @@ public class AccountController {
     public TransactionDTO insertTransaction(@PathVariable Long id, @RequestBody @Valid TransactionRequestDTO request) {
         return this.transactionService.insert(id, request);
     }
+
+    /**
+     * Delete all accounts and transactions in system
+     */
+    @DeleteMapping()
+    public void deleteAll(){
+         this.service.deleteAll();;
+    }
 }

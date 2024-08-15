@@ -12,10 +12,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.unibl.etf.mybudgetbackend.exceptions.InsufficientAccountBalanceException;
@@ -218,6 +214,13 @@ public class AccountControllerTests {
                         .content(mapper.writeValueAsString(req)))
                 .andExpect(status().isBadRequest());
         verify(transactionService, times(0)).insert(any(Long.class),any(TransactionRequestDTO.class));
+    }
+
+    @Test
+    public void DeleteAll_ValidRequest_200Ok()throws Exception{
+        mockMvc.perform(delete("/api/v1/accounts"))
+                .andExpect(status().isOk());
+        verify(service).deleteAll();
     }
 
 

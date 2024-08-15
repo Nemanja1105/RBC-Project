@@ -125,4 +125,14 @@ public class AccountServiceImpl implements AccountService {
     public boolean existsById(Long id) {
         return this.repository.existsById(id);
     }
+
+
+    /**
+     * Delete all accounts and transactions in system
+     * Potential optimization required
+     */
+    @Override
+    public void deleteAll() {
+        this.repository.deleteAll();
+    }
 }

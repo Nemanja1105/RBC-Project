@@ -1,9 +1,6 @@
 package org.unibl.etf.mybudgetbackend.controllers;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.unibl.etf.mybudgetbackend.models.dto.TransactionDTO;
 import org.unibl.etf.mybudgetbackend.services.TransactionService;
 
@@ -12,8 +9,10 @@ import java.util.List;
 /**
  * REST controller for managing transaction-related operations.
  */
+//TODO CORS FILTER
 @RestController
 @RequestMapping("/api/v1/transactions")
+@CrossOrigin
 public class TransactionController {
     private final TransactionService service;
 

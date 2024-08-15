@@ -34,4 +34,16 @@ export class AccountService {
       })
     );
   }
+
+  deleteAllData() {
+    return this.client.delete(`${environment.baseUrl}/accounts`).pipe(
+      first(),
+      tap(() => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Data successfully reset',
+        });
+      })
+    );
+  }
 }

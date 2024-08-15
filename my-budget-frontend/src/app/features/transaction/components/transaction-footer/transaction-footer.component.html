@@ -11,7 +11,7 @@
         icon="pi pi-plus"
       ></p-button>
       <span class="font-semibold text-xl flex-order-0 sm:flex-order-1"
-        >Available: 100 EUR</span
+        >Available: {{ availableBalance|number : "1.0-2" }} {{ currency }}</span
       >
     </div>
   </div>

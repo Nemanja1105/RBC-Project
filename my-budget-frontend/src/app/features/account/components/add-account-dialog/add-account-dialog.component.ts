@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   EventEmitter,
   inject,
@@ -25,6 +26,7 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
 import { JsonPipe, NgClass, UpperCasePipe } from '@angular/common';
 import { AccountService } from '../../services/account.service';
 import { AccountDTO, AccountRequestDTO } from '../../../../models/account';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-add-account-dialog',
@@ -69,12 +71,17 @@ export class AddAccountDialogComponent implements OnInit {
   });
 
   currencies: Currency[] = [];
+  currencies$: Observable<Currency[]>;
   currencyLoading: boolean = false;
   addLoading: boolean = false;
 
+  constructor() {
+    this.currencies$ = this.currencyService.getCurrencies();
+  }
+
   ngOnInit(): void {
     this.currencyLoading = true;
-    this.currencyService.getCurrencies().subscribe({
+    this.currencies$.subscribe({
       next: (data) => {
         this.currencies = data;
         this.currencyLoading = false;

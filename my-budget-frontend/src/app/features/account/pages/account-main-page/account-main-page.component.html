@@ -15,7 +15,7 @@
   <p-dataView #dv [value]="accounts">
     <ng-template pTemplate="list" let-accounts>
       <app-account-data-view-items
-        [accounts]="accounts"
+        [accounts]="accountsWithBalance"
         [numOfRows]="5"
         [isLoading]="isLoading"
       ></app-account-data-view-items>
@@ -35,4 +35,6 @@
 <app-transaction-footer
   [accounts]="accounts"
   (onTransactionSubmit)="onTransactionSubmit($event)"
+  [currency]="defaultCurrency | uppercase"
+  [availableBalance]="accountsWithBalance | sum"
 ></app-transaction-footer>

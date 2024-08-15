@@ -1,0 +1,40 @@
+<app-title-wrapper
+  title="Settings"
+  description="Modify the default currency, reset to factory settings and view the latest currency rates update."
+>
+</app-title-wrapper>
+<div class="mx-2 md:mx-6 mt-2 flex flex-column gap-4">
+  <div class="flex flex-column gap-2">
+    <label for="currency" class="font-medium">Currency</label>
+    <p-dropdown
+      placeholder="Select a Currency"
+      scrollHeight="150px"
+      [options]="currencies"
+      optionLabel="name"
+      [formControl]="currencyForm"
+    />
+    <small id="username-help" class="text-600">
+      Default currency used in the application.
+    </small>
+  </div>
+  <div class="flex flex-column gap-2">
+    <p class="font-medium m-0">Factory reset</p>
+    <p-button
+      icon="pi pi-trash"
+      label="Delete all data"
+      severity="danger"
+      [outlined]="true"
+      (onClick)="deleteAllData()"
+    ></p-button>
+    <small id="username-help" class="text-600">
+      Deletion of all accounts and transactions in the system.
+    </small>
+  </div>
+  <div class="flex flex-column gap-2">
+    <p class="font-medium m-0">Exchange rate updated</p>
+    <p class="font-medium text-500 text-xl m-0">
+      {{ exchangeRates?.date | date : "dd.MM.yyyy" }}
+    </p>
+  </div>
+</div>
+<p-confirmDialog />

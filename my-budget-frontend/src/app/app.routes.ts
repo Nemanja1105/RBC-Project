@@ -20,7 +20,7 @@ export const routes: Routes = [
     path: 'settings',
     loadComponent: () =>
       import(
-        './features/settings/settings-main-page/settings-main-page.component'
+        './features/settings/pages/settings-main-page/settings-main-page.component'
       ).then((r) => r.SettingsMainPageComponent),
   },
   {

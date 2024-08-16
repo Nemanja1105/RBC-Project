@@ -17,16 +17,19 @@
     style="height: 60px"
     [ngClass]="{ 'border-top-1 surface-border': !first }"
   >
-    <span class="text-xl font-medium"> {{ item?.account?.name }}</span>
+    <span class="text-xl font-medium"> {{ item?.name }}</span>
     <div class="flex flex-column text-right gap-1">
       <span class="text-xl font-semibold"
-        >{{ item?.convertedBalance | number : "1.0-2" }}
+        >{{
+          item?.balance!
+            | currencyConverter : item?.currency!
+            | number : "1.0-2"
+        }}
         {{ defaultCurrency | uppercase }}</span
       >
-      @if(item?.account?.currency!=defaultCurrency){
+      @if(item?.currency!=defaultCurrency){
       <span class="fond-medium text-500"
-        >{{ item?.account?.balance | number : "1.0-2" }}
-        {{ item?.account?.currency | uppercase }}</span
+        >{{ item?.balance }} {{ item.currency | uppercase }}</span
       >}
     </div>
   </div>

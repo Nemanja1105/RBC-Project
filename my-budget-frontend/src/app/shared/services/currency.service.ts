@@ -90,7 +90,6 @@ export class CurrencyService {
     if (fromCurrency == this.getDefaultCurrency()) return amount;
     const exchangeRates = this.exchangeRatesSubject.getValue();
     const fromRate = exchangeRates?.rates[fromCurrency];
-
     if (!fromRate) return NaN;
     return amount / fromRate;
   }

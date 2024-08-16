@@ -20,8 +20,6 @@ import { DecimalPipe, UpperCasePipe } from '@angular/common';
   styleUrl: './transaction-footer.component.scss',
 })
 export class TransactionFooterComponent {
-  @Input()
-  accounts: AccountDTO[] = [];
   @Output()
   onTransactionSubmit = new EventEmitter<TransactionDTO | null>();
   @Input()

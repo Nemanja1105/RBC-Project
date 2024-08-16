@@ -1,4 +1,11 @@
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  inject,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { InputGroupModule } from 'primeng/inputgroup';
@@ -21,6 +28,8 @@ import { AccountDTO } from '../../../../models/account';
 import { positiveNumberValidator } from '../../../../shared/directives/positive-number.validator';
 import { sufficientFundsValidator } from '../../../../shared/directives/sufficient-funds.validator';
 import { TransactionService } from '../../services/transaction.service';
+import { AccountService } from '../../../account/services/account.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-add-transaction-dialog',
@@ -40,11 +49,9 @@ import { TransactionService } from '../../services/transaction.service';
   templateUrl: './add-transaction-dialog.component.html',
   styleUrl: './add-transaction-dialog.component.scss',
 })
-export class AddTransactionDialogComponent {
+export class AddTransactionDialogComponent implements OnInit {
   @Input()
   visible: boolean = false;
-  @Input()
-  accounts: AccountDTO[] = [];
   @Output()
   onClose = new EventEmitter<void>();
   @Output()
@@ -55,23 +62,38 @@ export class AddTransactionDialogComponent {
     { label: 'Expense', value: 0 },
   ];
   addLoading: boolean = false;
+  accounts: AccountDTO[] = [];
+  accounts$: Observable<AccountDTO[]>;
 
   formBuilder = inject(FormBuilder);
   transactionService = inject(TransactionService);
+  accountService = inject(AccountService);
 
-  formData = this.formBuilder.group({
-    description: new FormControl<string>('', [
-      Validators.required,
-      Validators.maxLength(255),
-    ]),
-    type: new FormControl<number | null>(null, [Validators.required]),
-    amount: new FormControl<number | null>(1, [
-      Validators.required,
-      positiveNumberValidator(),
-      sufficientFundsValidator(),
-    ]),
-    account: new FormControl<AccountDTO | null>(null, [Validators.required]),
-  });
+  formData = this.formBuilder.group(
+    {
+      description: new FormControl<string>('', [
+        Validators.required,
+        Validators.maxLength(255),
+      ]),
+      type: new FormControl<number | null>(null, [Validators.required]),
+      amount: new FormControl<number | null>(1, [
+        Validators.required,
+        positiveNumberValidator(),
+        // sufficientFundsValidator(),
+      ]),
+      account: new FormControl<AccountDTO | null>(null, [Validators.required]),
+    },
+    { validators: sufficientFundsValidator() }
+  );
+
+  constructor() {
+    this.accounts$ = this.accountService.getAccountsObservable();
+  }
+  ngOnInit(): void {
+    this.accounts$.subscribe((data) => {
+      this.accounts = data;
+    });
+  }
 
   handleOnHide() {
     this.formData.reset();

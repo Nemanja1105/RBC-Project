@@ -12,6 +12,10 @@ import { FormBuilder, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, Observable } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TransactionFooterComponent } from '../../components/transaction-footer/transaction-footer.component';
+import { CurrencyService } from '../../../../shared/services/currency.service';
+import { UpperCasePipe } from '@angular/common';
+import { CurrencyConverterPipe } from '../../../../shared/directives/currency-converter.pipe';
+import { CurrencySumPipe } from '../../../../shared/directives/sum.pipe';
 
 @Component({
   selector: 'app-transaction-main-page',
@@ -23,23 +27,27 @@ import { TransactionFooterComponent } from '../../components/transaction-footer/
     DropdownModule,
     ReactiveFormsModule,
     TransactionFooterComponent,
+    UpperCasePipe,
+    CurrencySumPipe,
   ],
   templateUrl: './transaction-main-page.component.html',
   styleUrl: './transaction-main-page.component.scss',
 })
 export class TransactionMainPageComponent implements OnInit {
   isLoading: boolean = false;
-  isAccountsLoading: boolean = false;
   transactions: TransactionDTO[] = [];
   accounts: AccountDTO[] = [];
   defaultOption: DropdownOption = { label: 'All accounts', value: null };
   accountDropdownOptions: DropdownOption[] = [this.defaultOption];
   numOfRows: number = 5;
   formChanged$: Observable<any>;
+  defaultCurrency: string = '';
+  accounts$: Observable<AccountDTO[]>;
 
   transactionService = inject(TransactionService);
   accountService = inject(AccountService);
   formBuilder = inject(FormBuilder);
+  currencyService = inject(CurrencyService);
 
   formData = new FormControl<AccountDTO | null>(null);
 
@@ -49,6 +57,8 @@ export class TransactionMainPageComponent implements OnInit {
       distinctUntilChanged(),
       takeUntilDestroyed()
     );
+    this.defaultCurrency = this.currencyService.getDefaultCurrency();
+    this.accounts$ = this.accountService.getAccountsObservable();
   }
 
   ngOnInit(): void {
@@ -78,8 +88,7 @@ export class TransactionMainPageComponent implements OnInit {
   }
 
   loadAccounts() {
-    this.isAccountsLoading = true;
-    this.accountService.findAll().subscribe({
+    this.accounts$.subscribe({
       next: (data) => {
         this.accounts = data;
         let tmp: DropdownOption[] = data.map((el: AccountDTO) => {
@@ -87,10 +96,6 @@ export class TransactionMainPageComponent implements OnInit {
         });
         tmp.unshift(this.defaultOption);
         this.accountDropdownOptions = tmp;
-        this.isAccountsLoading = false;
-      },
-      error: () => {
-        this.isAccountsLoading = false;
       },
     });
   }

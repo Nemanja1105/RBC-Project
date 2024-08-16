@@ -6,7 +6,7 @@
     end
     [options]="accountDropdownOptions"
     placeholder="Select account"
-    [loading]="isAccountsLoading"
+    [loading]="accountService.isLoading"
     [formControl]="formData"
     styleClass="w-12rem"
   />
@@ -28,6 +28,7 @@
   </p-dataView>
 </div>
 <app-transaction-footer
-  [accounts]="accounts"
   (onTransactionSubmit)="onSubmit($event)"
+  [currency]="defaultCurrency | uppercase"
+  [availableBalance]="accounts | currencySum"
 ></app-transaction-footer>

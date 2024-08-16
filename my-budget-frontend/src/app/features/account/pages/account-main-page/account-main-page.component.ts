@@ -18,7 +18,8 @@ import { AddAccountDialogComponent } from '../../components/add-account-dialog/a
 import { TransactionFooterComponent } from '../../../transaction/components/transaction-footer/transaction-footer.component';
 import { TransactionDTO } from '../../../../models/transactions';
 import { CurrencyService } from '../../../../shared/services/currency.service';
-import { SumPipe } from '../../../../shared/directives/sum.pipe';
+import { CurrencySumPipe } from '../../../../shared/directives/sum.pipe';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-account-main-page',
@@ -32,7 +33,7 @@ import { SumPipe } from '../../../../shared/directives/sum.pipe';
     AccountDataViewItemsComponent,
     AddAccountDialogComponent,
     TransactionFooterComponent,
-    SumPipe,
+    CurrencySumPipe,
   ],
   templateUrl: './account-main-page.component.html',
   styleUrl: './account-main-page.component.scss',
@@ -45,33 +46,17 @@ export class AccountMainPageComponent implements OnInit {
   defaultCurrency: string = '';
   visibilityOfAddDialog: boolean = false;
   accounts: AccountDTO[] = [];
-  accountsWithBalance: AccountDTOWithConvertedCurrency[] = [];
+  accounts$: Observable<AccountDTO[]>;
+
+  constructor() {
+    this.accounts$ = this.accountService.getAccountsObservable();
+  }
 
   ngOnInit(): void {
     this.defaultCurrency = this.currencyService.getDefaultCurrency();
-    this.getPage();
-  }
-
-  getPage() {
-    this.isLoading = true;
-    this.accountService.findAll().subscribe({
+    this.accounts$.subscribe({
       next: (data) => {
-        if (!data) return;
         this.accounts = data;
-        this.accountsWithBalance = data.map((el: AccountDTO) => {
-          let converted = this.currencyService.convertAmount(
-            el.balance,
-            el.currency
-          );
-          return {
-            account: el,
-            convertedBalance: converted,
-          };
-        });
-        this.isLoading = false;
-      },
-      error: () => {
-        this.isLoading = false;
       },
     });
   }
@@ -84,38 +69,22 @@ export class AccountMainPageComponent implements OnInit {
     this.visibilityOfAddDialog = false;
   }
 
-  onSubmit(account: AccountDTO | null) {
-    if (account) {
-      this.accounts = [...this.accounts, account];
-      this.accountsWithBalance = [
-        ...this.accountsWithBalance,
-        {
-          account: account,
-          convertedBalance: this.currencyService.convertAmount(
-            account.balance,
-            account.currency
-          ),
-        },
-      ];
-    }
-  }
-
   //a better approach is to use global storage for the account instead of prop drilling
   onTransactionSubmit(transaction: TransactionDTO | null) {
     if (transaction && transaction?.account)
-      // this.accounts = this.accounts.map((el) =>
-      //   el.id != transaction?.account.id ? el : transaction?.account
-      // );
-      this.accountsWithBalance = this.accountsWithBalance.map((el) =>
-        el.account.id != transaction?.account.id
-          ? el
-          : {
-              account: transaction?.account,
-              convertedBalance: this.currencyService.convertAmount(
-                transaction?.account?.balance,
-                transaction?.account?.currency
-              ),
-            }
+      this.accounts = this.accounts.map((el) =>
+        el.id != transaction?.account.id ? el : transaction?.account
       );
+    // this.accountsWithBalance = this.accountsWithBalance.map((el) =>
+    //   el.account.id != transaction?.account.id
+    //     ? el
+    //     : {
+    //         account: transaction?.account,
+    //         convertedBalance: this.currencyService.convertAmount(
+    //           transaction?.account?.balance,
+    //           transaction?.account?.currency
+    //         ),
+    //       }
+    // );
   }
 }

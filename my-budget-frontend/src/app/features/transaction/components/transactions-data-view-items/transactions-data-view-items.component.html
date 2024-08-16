@@ -25,13 +25,28 @@
       >
       <span class="text-500">{{ item.account.name }}</span>
     </div>
-    <div class="flex flex-column text-right gap-1">
+    <!-- <div class="flex flex-column text-right gap-1">
       <span class="text-xl font-semibold">
         @if(item.type=="EXPENSE"){<span>-</span>}
         {{ item.amount | number : "1.0-2" }}
         {{ item.account.currency | uppercase }}</span
       >
       <span class="fond-medium text-500">{{ item.account.currency }} USD</span>
+    </div> -->
+    <div class="flex flex-column text-right gap-1">
+      <span class="text-xl font-semibold">
+        @if(item.type=="EXPENSE"){<span>-</span>}{{
+          item?.amount!
+            | currencyConverter : item?.account?.currency!
+            | number : "1.0-2"
+        }}
+        {{ defaultCurrency | uppercase }}</span
+      >
+      @if(item?.account?.currency!=defaultCurrency){
+      <span class="fond-medium text-500"
+        >@if(item.type=="EXPENSE"){<span>-</span>} {{ item?.amount }}
+        {{ item.account.currency | uppercase }}</span
+      >}
     </div>
   </div>
   }}

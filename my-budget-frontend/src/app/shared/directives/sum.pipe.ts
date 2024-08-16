@@ -1,16 +1,25 @@
-import { Pipe, PipeTransform } from '@angular/core';
-import { AccountDTOWithConvertedCurrency } from '../../models/account';
+import { inject, Pipe, PipeTransform } from '@angular/core';
+import {
+  AccountDTO,
+  AccountDTOWithConvertedCurrency,
+} from '../../models/account';
+import { CurrencyService } from '../services/currency.service';
 
 @Pipe({
-  name: 'sum',
+  name: 'currencySum',
   standalone: true,
   pure: true,
 })
-export class SumPipe implements PipeTransform {
-  transform(value: AccountDTOWithConvertedCurrency[]): number {
+export class CurrencySumPipe implements PipeTransform {
+  currencyService = inject(CurrencyService);
+  transform(value: AccountDTO[]): number {
     if (!Array.isArray(value)) {
       return 0;
     }
-    return value.reduce((acc, num) => acc + num.convertedBalance, 0);
+    return value.reduce(
+      (acc, num) =>
+        acc + this.currencyService.convertAmount(num.balance, num.currency),
+      0
+    );
   }
 }

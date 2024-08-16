@@ -16,6 +16,7 @@ import { DatePipe } from '@angular/common';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 import { AccountService } from '../../../account/services/account.service';
+import { SettingsFooterComponent } from '../../components/settings-footer/settings-footer.component';
 
 @Component({
   selector: 'app-settings-main-page',
@@ -27,6 +28,7 @@ import { AccountService } from '../../../account/services/account.service';
     ReactiveFormsModule,
     DatePipe,
     ConfirmDialogModule,
+    SettingsFooterComponent,
   ],
   templateUrl: './settings-main-page.component.html',
   styleUrl: './settings-main-page.component.scss',
@@ -78,8 +80,8 @@ export class SettingsMainPageComponent implements OnInit {
       message: 'Do you want to delete all data in system?',
       header: 'Delete Confirmation',
       icon: 'pi pi-info-circle',
-      acceptButtonStyleClass: 'p-button-danger p-button-text',
-      rejectButtonStyleClass: 'p-button-text p-button-text',
+      acceptButtonStyleClass: ' p-button-text',
+      rejectButtonStyleClass: 'p-button-danger p-button-text',
       acceptIcon: 'none',
       rejectIcon: 'none',
       accept: () => {

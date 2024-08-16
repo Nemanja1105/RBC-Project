@@ -152,7 +152,7 @@
       <small class="text-red-500 font-medium"
         >Amount must be greater than zero</small
       >
-      } @else if(doesFieldHaveError('amount','insufficientFunds')){
+      } @else if(formData.hasError('insufficientFunds')){
       <small class="text-red-500 font-medium"
         >Insufficient funds on the selected account</small
       >

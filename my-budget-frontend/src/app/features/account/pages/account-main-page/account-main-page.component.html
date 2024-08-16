@@ -11,13 +11,13 @@
   />
 </app-title-wrapper>
 
-<div class="mx-2 md:mx-6 mt-2">
+<div class="mx-2 md:mx-6 mt-2 h-full">
   <p-dataView #dv [value]="accounts">
     <ng-template pTemplate="list" let-accounts>
       <app-account-data-view-items
-        [accounts]="accountsWithBalance"
+        [accounts]="accounts"
         [numOfRows]="5"
-        [isLoading]="isLoading"
+        [isLoading]="accountService.isLoading"
       ></app-account-data-view-items>
     </ng-template>
     <ng-template pTemplate="empty">
@@ -29,12 +29,10 @@
   <app-add-account-dialog
     [visible]="visibilityOfAddDialog"
     (onClose)="onDialogClose()"
-    (afterSubmit)="onSubmit($event)"
   ></app-add-account-dialog>
 </div>
 <app-transaction-footer
-  [accounts]="accounts"
   (onTransactionSubmit)="onTransactionSubmit($event)"
   [currency]="defaultCurrency | uppercase"
-  [availableBalance]="accountsWithBalance | sum"
+  [availableBalance]="accounts | currencySum"
 ></app-transaction-footer>

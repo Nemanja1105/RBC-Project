@@ -51,8 +51,6 @@ export class AddAccountDialogComponent implements OnInit {
   visible: boolean = false;
   @Output()
   onClose = new EventEmitter<void>();
-  @Output()
-  afterSubmit = new EventEmitter<AccountDTO | null>();
 
   currencyService = inject(CurrencyService);
   accountService = inject(AccountService);
@@ -102,7 +100,6 @@ export class AddAccountDialogComponent implements OnInit {
     this.accountService.insert(request).subscribe({
       next: (account) => {
         this.addLoading = false;
-        this.afterSubmit.emit(account);
         this.handleOnHide();
       },
       error: () => {

@@ -2,8 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environments/environments';
 import { first, map, Observable, tap } from 'rxjs';
-import { TransactionRequestDTO } from '../../../models/transactions';
+import {
+  TransactionDTO,
+  TransactionRequestDTO,
+} from '../../../models/transactions';
 import { MessageService } from 'primeng/api';
+import { AccountService } from '../../account/services/account.service';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +15,7 @@ import { MessageService } from 'primeng/api';
 export class TransactionService {
   http = inject(HttpClient);
   messageService = inject(MessageService);
+  accountService = inject(AccountService);
 
   findAll() {
     return this.http.get(`${environment.baseUrl}/transactions`).pipe(
@@ -35,13 +40,14 @@ export class TransactionService {
   }
   insert(accountId: number, request: TransactionRequestDTO): Observable<any> {
     return this.http
-      .post(
+      .post<TransactionDTO>(
         `${environment.baseUrl}/accounts/${accountId}/transactions`,
         request
       )
       .pipe(
         first(),
-        tap(() => {
+        tap((data) => {
+          this.accountService.update(data.account);
           this.messageService.add({
             severity: 'success',
             summary: 'Transaction successfully created.',

@@ -119,7 +119,7 @@ public class AccountServiceImpl implements AccountService {
      * Checks if an entity with the specified ID exists in the database.
      *
      * @param id the ID of the entity to check for existence.
-     * @return  true if an entity with the given ID exists; false otherwise
+     * @return true if an entity with the given ID exists; false otherwise
      */
     @Override
     public boolean existsById(Long id) {

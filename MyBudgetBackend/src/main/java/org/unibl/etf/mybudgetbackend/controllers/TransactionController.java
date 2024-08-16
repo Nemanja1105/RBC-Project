@@ -26,7 +26,7 @@ public class TransactionController {
      * @return a  List of TransactionDTO objects
      */
     @GetMapping
-    public List<TransactionDTO> findAll(){
+    public List<TransactionDTO> findAll() {
         return this.service.findAll();
     }
 
@@ -37,7 +37,7 @@ public class TransactionController {
      * @return the  TransactionDTO representing the account with the specified ID
      */
     @GetMapping("/{id}")
-    public TransactionDTO findById(@PathVariable Long id){
+    public TransactionDTO findById(@PathVariable Long id) {
         return this.service.findById(id);
     }
 }

@@ -13,11 +13,18 @@ import java.util.List;
  */
 public interface AccountService {
     List<AccountDTO> findAll();
+
     Page<AccountDTO> findAllWithPage(Pageable page);
+
     AccountDTO findById(Long id);
+
     AccountDTO insert(AccountRequestDTO request);
+
     AccountDTO update(Long id, AccountRequestDTO request);
+
     void delete(Long id);
+
     boolean existsById(Long id);
+
     void deleteAll();
 }

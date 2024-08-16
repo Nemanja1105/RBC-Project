@@ -12,7 +12,10 @@ import java.util.List;
  */
 public interface TransactionService {
     List<TransactionDTO> findAll();
+
     TransactionDTO findById(Long id);
+
     List<TransactionDTO> findAllByAccountId(Long id);
-    TransactionDTO insert(Long accountId,TransactionRequestDTO request);
+
+    TransactionDTO insert(Long accountId, TransactionRequestDTO request);
 }

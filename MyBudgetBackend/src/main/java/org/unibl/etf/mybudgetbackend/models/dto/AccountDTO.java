@@ -1,6 +1,5 @@
 package org.unibl.etf.mybudgetbackend.models.dto;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

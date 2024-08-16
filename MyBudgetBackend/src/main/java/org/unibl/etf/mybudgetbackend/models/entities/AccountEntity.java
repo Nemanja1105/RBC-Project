@@ -34,7 +34,7 @@ public class AccountEntity {
     @Column(name = "balance", nullable = false, precision = 13, scale = 2) //Generally Accepted Accounting Principles
     private BigDecimal balance;
     @Basic
-    @Column(name = "currency", nullable = false,length = 15)
+    @Column(name = "currency", nullable = false, length = 15)
     private String currency;
     @OneToMany(mappedBy = "account", cascade = CascadeType.REMOVE)
     private List<TransactionEntity> transactions;

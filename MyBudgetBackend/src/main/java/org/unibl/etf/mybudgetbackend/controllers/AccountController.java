@@ -119,7 +119,8 @@ public class AccountController {
      * Delete all accounts and transactions in system
      */
     @DeleteMapping()
-    public void deleteAll(){
-         this.service.deleteAll();;
+    public void deleteAll() {
+        this.service.deleteAll();
+        ;
     }
 }

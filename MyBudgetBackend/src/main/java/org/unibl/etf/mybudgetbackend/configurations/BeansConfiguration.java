@@ -7,9 +7,9 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class BeansConfiguration {
 
-/**
- * Configures and provides a ModelMapper bean.
- */
+    /**
+     * Configures and provides a ModelMapper bean.
+     */
     @Bean
     public ModelMapper modelMapper() {
         ModelMapper mapper = new ModelMapper();

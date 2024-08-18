@@ -88,13 +88,11 @@ public class TransactionServiceImpl implements TransactionService {
     /**
      * Inserts a new transaction into the system and updates the balance of the specified account.
      *
-     * <p>This method performs the following steps:
-     * <ul>
-     *     <li>Retrieves the account by its ID.</li>
-     *     <li>Checks if the account has sufficient balance if the transaction type is an expense.</li>
-     *     <li>Updates the account balance based on the transaction type.</li>
-     *     <li>Creates and saves the transaction entity.</li>
-     * </ul>
+     * This method performs the following steps:
+     *     -Retrieves the account by its ID.
+     *     -Checks if the account has sufficient balance if the transaction type is an expense.
+     *     -Updates the account balance based on the transaction type.
+     *     -Creates and saves the transaction entity.
      *
      * @param accountId the ID of the account for which the transaction is being created
      * @param request   the transaction request details including type, amount and description

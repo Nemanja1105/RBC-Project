@@ -72,7 +72,7 @@ public class GlobalExceptionHandler {
      * Returns a 500 Internal Server Error status code.
      */
     @ExceptionHandler(Exception.class)
-    public final ResponseEntity<Object> handleException(Exception e, HandlerMethod handlerMethod) {
+    public final ResponseEntity<Object> handleException(Exception e) {
         StringBuilder builder = new StringBuilder();
         builder.append(e);
         builder.append(System.lineSeparator());

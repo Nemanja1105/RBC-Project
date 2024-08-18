@@ -1653,3 +1653,54 @@ Caused by: com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException: Unr
 2024-08-16T19:04:11.882+02:00  INFO 2712 --- [MyBudgetBackend] [http-nio-9000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
 2024-08-16T19:14:44.379+02:00  INFO 2712 --- [MyBudgetBackend] [http-nio-9000-exec-3] o.u.e.m.s.impl.AccountServiceImpl        : Account[64] has been successfully created.
 2024-08-16T19:14:49.541+02:00  INFO 2712 --- [MyBudgetBackend] [http-nio-9000-exec-5] o.u.e.m.s.impl.AccountServiceImpl        : Account[65] has been successfully created.
+2024-08-16T19:56:16.328+02:00  INFO 2712 --- [MyBudgetBackend] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-08-16T19:56:16.330+02:00  INFO 2712 --- [MyBudgetBackend] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-08-16T19:56:16.334+02:00  INFO 2712 --- [MyBudgetBackend] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-08-16T19:56:22.248+02:00  INFO 1144 --- [MyBudgetBackend] [main] o.u.e.m.MyBudgetBackendApplication       : Starting MyBudgetBackendApplication using Java 17.0.5 with PID 1144 (C:\Users\neman\Desktop\RBC_Projekat\RBC-Project\MyBudgetBackend\target\classes started by nemanja in C:\Users\neman\Desktop\RBC_Projekat\RBC-Project\MyBudgetBackend)
+2024-08-16T19:56:22.250+02:00  INFO 1144 --- [MyBudgetBackend] [main] o.u.e.m.MyBudgetBackendApplication       : The following 1 profile is active: "dev"
+2024-08-16T19:56:22.847+02:00  INFO 1144 --- [MyBudgetBackend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-08-16T19:56:22.906+02:00  INFO 1144 --- [MyBudgetBackend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 52 ms. Found 2 JPA repository interfaces.
+2024-08-16T19:56:23.254+02:00  INFO 1144 --- [MyBudgetBackend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9000 (http)
+2024-08-16T19:56:23.262+02:00  INFO 1144 --- [MyBudgetBackend] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-08-16T19:56:23.262+02:00  INFO 1144 --- [MyBudgetBackend] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-08-16T19:56:23.302+02:00  INFO 1144 --- [MyBudgetBackend] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-08-16T19:56:23.302+02:00  INFO 1144 --- [MyBudgetBackend] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1018 ms
+2024-08-16T19:56:23.411+02:00  INFO 1144 --- [MyBudgetBackend] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-08-16T19:56:23.452+02:00  INFO 1144 --- [MyBudgetBackend] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-08-16T19:56:23.478+02:00  INFO 1144 --- [MyBudgetBackend] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-08-16T19:56:23.825+02:00  INFO 1144 --- [MyBudgetBackend] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-08-16T19:56:23.852+02:00  INFO 1144 --- [MyBudgetBackend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-08-16T19:56:24.091+02:00  INFO 1144 --- [MyBudgetBackend] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@31b6b0c7
+2024-08-16T19:56:24.092+02:00  INFO 1144 --- [MyBudgetBackend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-08-16T19:56:24.872+02:00  INFO 1144 --- [MyBudgetBackend] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-08-16T19:56:24.919+02:00  INFO 1144 --- [MyBudgetBackend] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-08-16T19:56:25.193+02:00  WARN 1144 --- [MyBudgetBackend] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-08-16T19:56:25.434+02:00  INFO 1144 --- [MyBudgetBackend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 9000 (http) with context path '/'
+2024-08-16T19:56:25.440+02:00  INFO 1144 --- [MyBudgetBackend] [main] o.u.e.m.MyBudgetBackendApplication       : Started MyBudgetBackendApplication in 3.578 seconds (process running for 4.149)
+2024-08-16T19:56:40.093+02:00  INFO 1144 --- [MyBudgetBackend] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-08-16T19:56:40.094+02:00  INFO 1144 --- [MyBudgetBackend] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-08-16T19:56:40.099+02:00  INFO 1144 --- [MyBudgetBackend] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-08-16T20:06:12.144+02:00  INFO 9536 --- [MyBudgetBackend] [main] o.u.e.m.MyBudgetBackendApplication       : Starting MyBudgetBackendApplication using Java 17.0.5 with PID 9536 (C:\Users\neman\Desktop\RBC_Projekat\RBC-Project\MyBudgetBackend\target\classes started by nemanja in C:\Users\neman\Desktop\RBC_Projekat\RBC-Project\MyBudgetBackend)
+2024-08-16T20:06:12.146+02:00  INFO 9536 --- [MyBudgetBackend] [main] o.u.e.m.MyBudgetBackendApplication       : The following 1 profile is active: "dev"
+2024-08-16T20:06:12.633+02:00  INFO 9536 --- [MyBudgetBackend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-08-16T20:06:12.681+02:00  INFO 9536 --- [MyBudgetBackend] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 42 ms. Found 2 JPA repository interfaces.
+2024-08-16T20:06:13.023+02:00  INFO 9536 --- [MyBudgetBackend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9000 (http)
+2024-08-16T20:06:13.031+02:00  INFO 9536 --- [MyBudgetBackend] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-08-16T20:06:13.031+02:00  INFO 9536 --- [MyBudgetBackend] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-08-16T20:06:13.074+02:00  INFO 9536 --- [MyBudgetBackend] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-08-16T20:06:13.075+02:00  INFO 9536 --- [MyBudgetBackend] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 894 ms
+2024-08-16T20:06:13.179+02:00  INFO 9536 --- [MyBudgetBackend] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-08-16T20:06:13.219+02:00  INFO 9536 --- [MyBudgetBackend] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-08-16T20:06:13.245+02:00  INFO 9536 --- [MyBudgetBackend] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-08-16T20:06:13.484+02:00  INFO 9536 --- [MyBudgetBackend] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-08-16T20:06:13.502+02:00  INFO 9536 --- [MyBudgetBackend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-08-16T20:06:13.705+02:00  INFO 9536 --- [MyBudgetBackend] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@74bdfa0b
+2024-08-16T20:06:13.707+02:00  INFO 9536 --- [MyBudgetBackend] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-08-16T20:06:14.430+02:00  INFO 9536 --- [MyBudgetBackend] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-08-16T20:06:14.479+02:00  INFO 9536 --- [MyBudgetBackend] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-08-16T20:06:14.746+02:00  WARN 9536 --- [MyBudgetBackend] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-08-16T20:06:14.979+02:00  INFO 9536 --- [MyBudgetBackend] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 9000 (http) with context path '/'
+2024-08-16T20:06:14.986+02:00  INFO 9536 --- [MyBudgetBackend] [main] o.u.e.m.MyBudgetBackendApplication       : Started MyBudgetBackendApplication in 3.157 seconds (process running for 3.596)
+2024-08-16T20:35:05.975+02:00  INFO 9536 --- [MyBudgetBackend] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-08-16T20:35:05.991+02:00  INFO 9536 --- [MyBudgetBackend] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-08-16T20:35:06.011+02:00  INFO 9536 --- [MyBudgetBackend] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

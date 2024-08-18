@@ -51,9 +51,9 @@ public class AccountServiceTests {
     //METHOD-NAME_STATE_EXPECTATION
 
     @Test
-    public void FindAll_ValidRequest_ListOfAccoutDTO(){
+    public void FindAll_ValidRequest_ListOfAccoutDTO() {
         when(repository.findAll()).thenReturn(Arrays.asList(account));
-        List<AccountDTO> result=service.findAll();
+        List<AccountDTO> result = service.findAll();
         Assertions.assertThat(result).isNotNull();
         Assertions.assertThat(result.size()).isEqualTo(1);
         verify(repository).findAll();
@@ -99,7 +99,7 @@ public class AccountServiceTests {
 
     @Test
     public void Update_AccountWithIdExists_AccountDTO() {
-        var updatedAccount = new AccountEntity(account.getId(), "TEST", account.getBalance(), account.getCurrency(),null);
+        var updatedAccount = new AccountEntity(account.getId(), "TEST", account.getBalance(), account.getCurrency(), null);
         when(repository.existsById(any(Long.class))).thenReturn(true);
         when(repository.saveAndFlush(any(AccountEntity.class))).thenReturn(updatedAccount);
         var request = new AccountRequestDTO("TEST", account.getBalance(), account.getCurrency());
@@ -135,19 +135,19 @@ public class AccountServiceTests {
     }
 
     @Test
-    public void ExistsById_AccountWithIdExists_ReturnTrue(){
+    public void ExistsById_AccountWithIdExists_ReturnTrue() {
         Long id = 1l;
         when(repository.existsById(any(Long.class))).thenReturn(true);
-        var result=service.existsById(id);
+        var result = service.existsById(id);
         Assertions.assertThat(result).isTrue();
         verify(repository).existsById(any(Long.class));
     }
 
     @Test
-    public void ExistsById_AccountWithIdNotExists_ReturnFalse(){
+    public void ExistsById_AccountWithIdNotExists_ReturnFalse() {
         Long id = 1l;
         when(repository.existsById(any(Long.class))).thenReturn(false);
-        var result=service.existsById(id);
+        var result = service.existsById(id);
         Assertions.assertThat(result).isFalse();
         verify(repository).existsById(any(Long.class));
     }

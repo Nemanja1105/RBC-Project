@@ -30,7 +30,8 @@ import java.util.stream.Stream;
 
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(controllers = {AccountController.class})
 @ExtendWith(MockitoExtension.class)
@@ -196,8 +197,8 @@ public class AccountControllerTests {
     }
 
     @Test
-    public void InsertTransaction_InsufficientBalance_400BadRequest()throws Exception{
-        when(transactionService.insert(any(Long.class),any(TransactionRequestDTO.class))).thenThrow(new InsufficientAccountBalanceException());
+    public void InsertTransaction_InsufficientBalance_400BadRequest() throws Exception {
+        when(transactionService.insert(any(Long.class), any(TransactionRequestDTO.class))).thenThrow(new InsufficientAccountBalanceException());
         mockMvc.perform(post("/api/v1/accounts/1/transactions")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(mapper.writeValueAsString(transactionRequestDTO)))
@@ -207,17 +208,17 @@ public class AccountControllerTests {
 
     @ParameterizedTest
     @MethodSource("transactionRequestFailTestData")
-    public void InsertTransaction_InvalidRequest_400BadRequest(String description,BigDecimal amount,TransactionType type) throws Exception {
+    public void InsertTransaction_InvalidRequest_400BadRequest(String description, BigDecimal amount, TransactionType type) throws Exception {
         var req = TransactionRequestDTO.builder().description(description).amount(amount).type(type).build();
         mockMvc.perform(post("/api/v1/accounts/1/transactions")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(mapper.writeValueAsString(req)))
                 .andExpect(status().isBadRequest());
-        verify(transactionService, times(0)).insert(any(Long.class),any(TransactionRequestDTO.class));
+        verify(transactionService, times(0)).insert(any(Long.class), any(TransactionRequestDTO.class));
     }
 
     @Test
-    public void DeleteAll_ValidRequest_200Ok()throws Exception{
+    public void DeleteAll_ValidRequest_200Ok() throws Exception {
         mockMvc.perform(delete("/api/v1/accounts"))
                 .andExpect(status().isOk());
         verify(service).deleteAll();
@@ -226,21 +227,21 @@ public class AccountControllerTests {
 
     private static Stream<Arguments> transactionRequestFailTestData() {
         return Stream.of(Arguments.of("jpGswEatfTiVGXzqRXzjtGiDq" +
-                "yyqilpgkPCFmctsbQwGBphGTG" +
-                "evjJFaLBIZUALwkBEyPnACpnF" +
-                "zgkwvUrMZfxWTMdxadaNAyUsc" +
-                "VvdxjKKRfPjSuIiHpSzYjUhQf" +
-                "oWhRvNwozuQBmvNlkGmqsAWNK" +
-                "XbCGWdNdYbJUJksKfCpLUHkbK" +
-                "LvJNtnjYdByyBOjbRaOWmpJuF" +
-                "IcUpExUgGXWKUuNMeyVDlLONb" +
-                "gDYiEOmfubcCViMtootCmbkoA" +
-                "kxjSHkoNiqeuoMyigFutrViFm" +
-                "rHoXLmCKYbjRdxzfrsAbWZbEV", BigDecimal.valueOf(100), TransactionType.EXPENSE),
+                        "yyqilpgkPCFmctsbQwGBphGTG" +
+                        "evjJFaLBIZUALwkBEyPnACpnF" +
+                        "zgkwvUrMZfxWTMdxadaNAyUsc" +
+                        "VvdxjKKRfPjSuIiHpSzYjUhQf" +
+                        "oWhRvNwozuQBmvNlkGmqsAWNK" +
+                        "XbCGWdNdYbJUJksKfCpLUHkbK" +
+                        "LvJNtnjYdByyBOjbRaOWmpJuF" +
+                        "IcUpExUgGXWKUuNMeyVDlLONb" +
+                        "gDYiEOmfubcCViMtootCmbkoA" +
+                        "kxjSHkoNiqeuoMyigFutrViFm" +
+                        "rHoXLmCKYbjRdxzfrsAbWZbEV", BigDecimal.valueOf(100), TransactionType.EXPENSE),
                 Arguments.of("", BigDecimal.valueOf(100), TransactionType.EXPENSE),
-                Arguments.of("desc",null,TransactionType.INCOME),
-                Arguments.of("desc",BigDecimal.valueOf(0.0),TransactionType.INCOME),
-                Arguments.of("desc",BigDecimal.valueOf(100.0),null)
+                Arguments.of("desc", null, TransactionType.INCOME),
+                Arguments.of("desc", BigDecimal.valueOf(0.0), TransactionType.INCOME),
+                Arguments.of("desc", BigDecimal.valueOf(100.0), null)
         );
     }
 

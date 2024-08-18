@@ -18,7 +18,6 @@ import org.unibl.etf.mybudgetbackend.models.entities.AccountEntity;
 import org.unibl.etf.mybudgetbackend.models.entities.TransactionEntity;
 import org.unibl.etf.mybudgetbackend.models.enums.TransactionType;
 import org.unibl.etf.mybudgetbackend.repositories.TransactionRepository;
-import org.unibl.etf.mybudgetbackend.services.impl.AccountServiceImpl;
 import org.unibl.etf.mybudgetbackend.services.impl.TransactionServiceImpl;
 
 import java.math.BigDecimal;
@@ -47,23 +46,23 @@ public class TransactionServiceTests {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.openMocks(this);
-        service = new TransactionServiceImpl(repository,accountService, modelMapper());
+        service = new TransactionServiceImpl(repository, accountService, modelMapper());
         service.setEntityManager(entityManager);
-        this.account=AccountEntity.builder().name("TEST").balance(BigDecimal.valueOf(100.0f)).currency("EUR").id(1l).build();
-        this.transaction=TransactionEntity.builder().description("TEST DESC").type(TransactionType.EXPENSE).amount(BigDecimal.valueOf(50.0f)).id(1l).account(account).build();
+        this.account = AccountEntity.builder().name("TEST").balance(BigDecimal.valueOf(100.0f)).currency("EUR").id(1l).build();
+        this.transaction = TransactionEntity.builder().description("TEST DESC").type(TransactionType.EXPENSE).amount(BigDecimal.valueOf(50.0f)).id(1l).account(account).build();
     }
 
     @Test
-    public void FindAll__ListOfTransactionDTO(){
+    public void FindAll__ListOfTransactionDTO() {
         when(repository.findAll()).thenReturn(Arrays.asList(transaction));
-        var result=this.service.findAll();
+        var result = this.service.findAll();
         Assertions.assertThat(result).isNotNull();
         Assertions.assertThat(result.size()).isEqualTo(1);
         verify(repository).findAll();
     }
 
     @Test
-    public void FindById_TransactionWithIdExists_TransactionDTO(){
+    public void FindById_TransactionWithIdExists_TransactionDTO() {
         when(repository.findById(any(Long.class))).thenReturn(Optional.of(transaction));
         var transactionDTO = service.findById(transaction.getId());
         Assertions.assertThat(transactionDTO).isNotNull();
@@ -79,10 +78,10 @@ public class TransactionServiceTests {
     }
 
     @Test
-    public void FindAllByAccountId_AccountWithIdExists_ListOfTransactionDTO(){
+    public void FindAllByAccountId_AccountWithIdExists_ListOfTransactionDTO() {
         when(repository.findAllByAccountId(any(Long.class))).thenReturn(Arrays.asList(transaction));
         when(accountService.existsById(any(Long.class))).thenReturn(true);
-        var result=service.findAllByAccountId(account.getId());
+        var result = service.findAllByAccountId(account.getId());
         Assertions.assertThat(result).isNotNull();
         Assertions.assertThat(result).isNotEmpty();
         Assertions.assertThat(result.get(0).getId()).isEqualTo(transaction.getId());
@@ -91,11 +90,11 @@ public class TransactionServiceTests {
     }
 
     @Test
-    public void FindAllByAccountId_AccountWithIdNotExists_ThrowsException(){
+    public void FindAllByAccountId_AccountWithIdNotExists_ThrowsException() {
         when(accountService.existsById(any(Long.class))).thenReturn(false);
-        org.junit.jupiter.api.Assertions.assertThrows(NotFoundException.class,()->service.findAllByAccountId(account.getId()));
-        verify(accountService,times(1)).existsById(account.getId());
-        verify(repository,times(0)).findAllByAccountId(account.getId());
+        org.junit.jupiter.api.Assertions.assertThrows(NotFoundException.class, () -> service.findAllByAccountId(account.getId()));
+        verify(accountService, times(1)).existsById(account.getId());
+        verify(repository, times(0)).findAllByAccountId(account.getId());
     }
 
     @Test
@@ -115,25 +114,25 @@ public class TransactionServiceTests {
     }
 
     @Test
-    public void Insert_AccountExistsTransactionTypeEXPENSEInsufficientAccountBalance_ThrowException(){
+    public void Insert_AccountExistsTransactionTypeEXPENSEInsufficientAccountBalance_ThrowException() {
         var request = TransactionRequestDTO.builder().description("DESC")
                 .amount(BigDecimal.valueOf(100)).type(TransactionType.EXPENSE).build();
         var accountDto = AccountDTO.builder().balance(BigDecimal.valueOf(50))
                 .name(account.getName()).currency(account.getCurrency()).id(account.getId()).build();
         when(accountService.findById(any(Long.class))).thenReturn(accountDto);
-        org.junit.jupiter.api.Assertions.assertThrows(InsufficientAccountBalanceException.class,()->service.insert(1l,request));
-        verify(accountService,times(1)).findById(any(Long.class));
-        verify(repository,times(0)).saveAndFlush(any(TransactionEntity.class));
-        verify(entityManager,times(0)).refresh(any(TransactionEntity.class));
+        org.junit.jupiter.api.Assertions.assertThrows(InsufficientAccountBalanceException.class, () -> service.insert(1l, request));
+        verify(accountService, times(1)).findById(any(Long.class));
+        verify(repository, times(0)).saveAndFlush(any(TransactionEntity.class));
+        verify(entityManager, times(0)).refresh(any(TransactionEntity.class));
     }
 
     @Test
-    public void Insert_AccountNotExists_ThrowsException(){
+    public void Insert_AccountNotExists_ThrowsException() {
         when(accountService.findById(any(Long.class))).thenThrow(new NotFoundException());
-        org.junit.jupiter.api.Assertions.assertThrows(NotFoundException.class,()->service.insert(1l,null));
-        verify(accountService,times(1)).findById(any(Long.class));
-        verify(repository,times(0)).saveAndFlush(any(TransactionEntity.class));
-        verify(entityManager,times(0)).refresh(any(TransactionEntity.class));
+        org.junit.jupiter.api.Assertions.assertThrows(NotFoundException.class, () -> service.insert(1l, null));
+        verify(accountService, times(1)).findById(any(Long.class));
+        verify(repository, times(0)).saveAndFlush(any(TransactionEntity.class));
+        verify(entityManager, times(0)).refresh(any(TransactionEntity.class));
     }
 
     private ModelMapper modelMapper() {

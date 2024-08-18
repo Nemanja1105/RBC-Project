@@ -44,7 +44,7 @@ public class TransactionControllerTests {
     public void setup() {
         MockitoAnnotations.openMocks(this);
         this.account = AccountDTO.builder().id(1l).name("Test").balance(BigDecimal.valueOf(100)).currency("EUR").build();
-        this.transaction= TransactionDTO.builder().id(1l).description("DESC").amount(BigDecimal.valueOf(50)).type(TransactionType.INCOME).account(account).build();
+        this.transaction = TransactionDTO.builder().id(1l).description("DESC").amount(BigDecimal.valueOf(50)).type(TransactionType.INCOME).account(account).build();
     }
 
     @Test

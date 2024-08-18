@@ -1,8 +1,6 @@
 package org.unibl.etf.mybudgetbackend.repositories;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
@@ -23,24 +21,24 @@ public class TransactionRepositoryTests {
     private AccountRepository accountRepository;
 
     @Test
-    public void FindByAccountId_AccountWithIdExists_ListOfTransactions(){
-        var account=AccountEntity.builder().name("TEST").balance(BigDecimal.valueOf(100.0f)).currency("EUR").build();
-        var transaction=TransactionEntity.builder().description("TEST DESC").type(TransactionType.EXPENSE).amount(BigDecimal.valueOf(50.0f)).account(account).build();
+    public void FindByAccountId_AccountWithIdExists_ListOfTransactions() {
+        var account = AccountEntity.builder().name("TEST").balance(BigDecimal.valueOf(100.0f)).currency("EUR").build();
+        var transaction = TransactionEntity.builder().description("TEST DESC").type(TransactionType.EXPENSE).amount(BigDecimal.valueOf(50.0f)).account(account).build();
         this.accountRepository.save(account);
         this.repository.save(transaction);
-        var result=this.repository.findAllByAccountId(account.getId());
+        var result = this.repository.findAllByAccountId(account.getId());
         Assertions.assertThat(result).isNotNull();
         Assertions.assertThat(result).isNotEmpty();
         Assertions.assertThat(result.get(0).getId()).isEqualTo(account.getId());
     }
 
     @Test
-    public void FindByAccountId_AccountWithIdNotExists_EmptyList(){
-        var account=AccountEntity.builder().name("TEST").balance(BigDecimal.valueOf(100.0f)).currency("EUR").build();
-        var transaction=TransactionEntity.builder().description("TEST DESC").type(TransactionType.EXPENSE).amount(BigDecimal.valueOf(50.0f)).account(account).build();
+    public void FindByAccountId_AccountWithIdNotExists_EmptyList() {
+        var account = AccountEntity.builder().name("TEST").balance(BigDecimal.valueOf(100.0f)).currency("EUR").build();
+        var transaction = TransactionEntity.builder().description("TEST DESC").type(TransactionType.EXPENSE).amount(BigDecimal.valueOf(50.0f)).account(account).build();
         this.accountRepository.save(account);
         this.repository.save(transaction);
-        var result=this.repository.findAllByAccountId(10l);
+        var result = this.repository.findAllByAccountId(10l);
         Assertions.assertThat(result).isNotNull();
         Assertions.assertThat(result).isEmpty();
     }

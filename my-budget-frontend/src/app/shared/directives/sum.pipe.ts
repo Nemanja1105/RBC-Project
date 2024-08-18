@@ -1,8 +1,5 @@
 import { inject, Pipe, PipeTransform } from '@angular/core';
-import {
-  AccountDTO,
-  AccountDTOWithConvertedCurrency,
-} from '../../models/account';
+import { AccountDTO } from '../../models/account';
 import { CurrencyService } from '../services/currency.service';
 
 @Pipe({

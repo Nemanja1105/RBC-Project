@@ -1,5 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
-@import "primeng/resources/themes/lara-light-teal/theme.css"; //"primeng/resources/themes/lara-light-indigo/theme.css";
+@import "primeng/resources/themes/lara-light-teal/theme.css";
 @import "primeng/resources/primeng.css";
 @import "primeicons/primeicons.css";
 @import "../node_modules/primeflex/primeflex.css";
@@ -13,7 +12,6 @@ body {
 }
 
 .container {
-  // height: calc(100vh - 65px);
   width: 100%;
   margin-left: auto;
   margin-right: auto;

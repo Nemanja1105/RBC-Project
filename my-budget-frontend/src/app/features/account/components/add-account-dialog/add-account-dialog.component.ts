@@ -22,10 +22,9 @@ import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 import { Currency } from '../../../../models/currency';
 import { CurrencyService } from '../../../../shared/services/currency.service';
-import { AutoCompleteModule } from 'primeng/autocomplete';
-import { JsonPipe, NgClass, UpperCasePipe } from '@angular/common';
+import { NgClass, UpperCasePipe } from '@angular/common';
 import { AccountService } from '../../services/account.service';
-import { AccountDTO, AccountRequestDTO } from '../../../../models/account';
+import { AccountRequestDTO } from '../../../../models/account';
 import { Observable } from 'rxjs';
 
 @Component({

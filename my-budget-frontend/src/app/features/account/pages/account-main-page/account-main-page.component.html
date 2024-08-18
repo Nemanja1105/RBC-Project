@@ -32,7 +32,6 @@
   ></app-add-account-dialog>
 </div>
 <app-transaction-footer
-  (onTransactionSubmit)="onTransactionSubmit($event)"
   [currency]="defaultCurrency | uppercase"
   [availableBalance]="accounts | currencySum"
 ></app-transaction-footer>

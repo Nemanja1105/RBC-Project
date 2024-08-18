@@ -14,7 +14,6 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TransactionFooterComponent } from '../../components/transaction-footer/transaction-footer.component';
 import { CurrencyService } from '../../../../shared/services/currency.service';
 import { UpperCasePipe } from '@angular/common';
-import { CurrencyConverterPipe } from '../../../../shared/directives/currency-converter.pipe';
 import { CurrencySumPipe } from '../../../../shared/directives/sum.pipe';
 
 @Component({

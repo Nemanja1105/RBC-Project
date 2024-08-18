@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { AccountMainPageComponent } from './features/account/pages/account-main-page/account-main-page.component';
 
 export const routes: Routes = [
   {

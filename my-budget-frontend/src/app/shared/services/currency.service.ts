@@ -2,13 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../environments/environments';
 import { BehaviorSubject, catchError, first, map, of, tap } from 'rxjs';
-import { MessageService } from 'primeng/api';
 import {
   Currency,
   ExchangeRates,
   ExchangeRatesResponse,
 } from '../../models/currency';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { MessageService } from 'primeng/api';
 
 @Injectable({
   providedIn: 'root',
@@ -79,7 +79,12 @@ export class CurrencyService {
 
   changeCurrency(currency: Currency) {
     this.setDefaultCurrency(currency.code);
-    this.fetchExchangeRate().subscribe();
+    this.fetchExchangeRate().subscribe(() => {
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Currency successfully updated',
+      });
+    });
   }
 
   setDefaultCurrency(currency: string) {

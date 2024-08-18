@@ -79,7 +79,6 @@ export class AddTransactionDialogComponent implements OnInit {
       amount: new FormControl<number | null>(1, [
         Validators.required,
         positiveNumberValidator(),
-        // sufficientFundsValidator(),
       ]),
       account: new FormControl<AccountDTO | null>(null, [Validators.required]),
     },

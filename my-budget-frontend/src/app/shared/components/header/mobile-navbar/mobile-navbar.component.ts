@@ -26,7 +26,6 @@ export class MobileNavbarComponent {
             label: el.title,
             icon: el.icon,
             route: el.path,
-            //command: () => this.router.navigate([el.path]),
           };
         }),
       },

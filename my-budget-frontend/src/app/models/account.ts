@@ -5,11 +5,6 @@ export type AccountDTO = {
   currency: string;
 };
 
-export type AccountDTOWithConvertedCurrency = {
-  account: AccountDTO;
-  convertedBalance: number;
-};
-
 export type AccountRequestDTO = {
   name: string;
   balance: number;

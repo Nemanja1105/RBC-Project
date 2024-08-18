@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { DividerModule } from 'primeng/divider';
 import { AddTransactionDialogComponent } from '../add-transaction-dialog/add-transaction-dialog.component';
-import { AccountDTO } from '../../../../models/account';
 import { TransactionDTO } from '../../../../models/transactions';
 import { DecimalPipe, UpperCasePipe } from '@angular/common';
 

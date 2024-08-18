@@ -1,11 +1,6 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  OnInit,
-} from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { TitleWrapperComponent } from '../../../../shared/components/title-wrapper/title-wrapper.component';
-import { DropdownItem, DropdownModule } from 'primeng/dropdown';
+import { DropdownModule } from 'primeng/dropdown';
 import { ButtonModule } from 'primeng/button';
 import { CurrencyService } from '../../../../shared/services/currency.service';
 import { debounceTime, distinctUntilChanged, Observable } from 'rxjs';

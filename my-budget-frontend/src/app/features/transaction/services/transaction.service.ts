@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { environment } from '../../../environments/environments';
 import { first, map, Observable, tap } from 'rxjs';
 import {
   TransactionDTO,
@@ -8,6 +7,7 @@ import {
 } from '../../../models/transactions';
 import { MessageService } from 'primeng/api';
 import { AccountService } from '../../account/services/account.service';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',

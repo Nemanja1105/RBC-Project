@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { environment } from '../../environments/environments';
 import { BehaviorSubject, catchError, first, map, of, tap } from 'rxjs';
 import {
   Currency,
@@ -9,6 +8,7 @@ import {
 } from '../../models/currency';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MessageService } from 'primeng/api';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',

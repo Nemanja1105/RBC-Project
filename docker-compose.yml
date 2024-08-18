@@ -1,0 +1,45 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: /MyBudgetBackend/Dockerfile
+    ports:
+      - "8180:8080"
+    container_name: backend
+    environment:
+      SPRING_PROFILES_ACTIVE: production
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/my_budget_db
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: admin
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: mysql
+    container_name: db
+    environment:
+      MYSQL_DATABASE: my_budget_db
+      MYSQL_ROOT_PASSWORD: admin
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3316:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "--silent"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+  
+  proxy:
+    build:
+      context: .
+      dockerfile: ./my-budget-frontend/Dockerfile
+    ports:
+      - "80:80"
+    container_name: proxy
+    depends_on:
+      - backend
+  
+volumes:
+  db_data:

@@ -3,8 +3,8 @@ import { RouterOutlet } from '@angular/router';
 import { HeaderNavbarComponent } from './shared/components/header/header-navbar/header-navbar.component';
 import { ToastModule } from 'primeng/toast';
 import { CurrencyService } from './shared/services/currency.service';
-import { environment } from './environments/environments';
 import { AccountService } from './features/account/services/account.service';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',

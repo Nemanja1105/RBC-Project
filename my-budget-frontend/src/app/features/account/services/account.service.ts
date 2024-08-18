@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal, WritableSignal } from '@angular/core';
-import { environment } from '../../../environments/environments';
 import { BehaviorSubject, catchError, first, map, Observable, tap } from 'rxjs';
 import { AccountDTO, AccountRequestDTO } from '../../../models/account';
 import { MessageService } from 'primeng/api';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',

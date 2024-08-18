@@ -33,7 +33,6 @@ export class AccountMainPageComponent implements OnInit {
   accountService = inject(AccountService);
   currencyService = inject(CurrencyService);
 
-  isLoading: boolean = false;
   defaultCurrency: string = '';
   visibilityOfAddDialog: boolean = false;
   accounts: AccountDTO[] = [];

@@ -9,10 +9,8 @@ import java.util.List;
 /**
  * REST controller for managing transaction-related operations.
  */
-//TODO CORS FILTER
 @RestController
 @RequestMapping("/api/v1/transactions")
-@CrossOrigin
 public class TransactionController {
     private final TransactionService service;
 

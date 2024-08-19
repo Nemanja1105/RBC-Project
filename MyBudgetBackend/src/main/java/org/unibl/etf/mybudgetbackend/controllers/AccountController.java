@@ -18,7 +18,6 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/api/v1/accounts")
-@CrossOrigin("http://localhost:4200")
 public class AccountController {
     private final AccountService service;
     private final TransactionService transactionService;
